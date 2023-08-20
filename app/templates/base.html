@@ -1,0 +1,109 @@
+{% extends 'bootstrap/base.html' %}
+{% block html %}
+    {{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+{% block title %}
+    {{ 'Order Tracking Application' }}
+{% endblock %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% block head %}
+    {{ super() }}
+    {{ fixes.ie8() }}
+    <!--Script to be loaded at the top, so it is not in the scripts block that is placed at the bottom of the html.-->
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+            }
+            return "";
+        }
+        location_name = getCookie('location');
+    </script>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #sitecontainer {
+            min-height: 100%;
+        }
+        .fixed-bottom {
+            background-color: #F8F8F8;
+            border-color: #E7E7E7;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">{{ 'Toggle navigation' }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('home.home') }}">
+                    {{ 'Home' }}
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('files.files') }}">{{ 'Files' }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="container" id="sitecontainer">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block app_content %}
+            <!-- App content appears here -->
+        {% endblock %}
+    </div>
+    <footer class="fixed-bottom">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Simple ask your documents app</h5>
+                <p>
+                    Upload and ask
+                </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+                <ul class="list-unstyled mb-0">
+                </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3">
+            © 2023 G.S.
+        </div>
+    </footer>
+{% endblock %}
