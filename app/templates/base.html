@@ -10,25 +10,6 @@
 {% block head %}
     {{ super() }}
     {{ fixes.ie8() }}
-    <!--Script to be loaded at the top, so it is not in the scripts block that is placed at the bottom of the html.-->
-    <script>
-        function getCookie(cname) {
-            let name = cname + "=";
-            let decodedCookie = decodeURIComponent(document.cookie);
-            let ca = decodedCookie.split(';');
-            for(let i = 0; i <ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-            }
-            return "";
-        }
-        location_name = getCookie('location');
-    </script>
 {% endblock %}
 {% block styles %}
     {{ super() }}
