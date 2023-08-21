@@ -1,7 +1,3 @@
-"""
-This script creates a database of information gathered from local text files.
-"""
-
 from langchain.document_loaders import DirectoryLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -9,6 +5,11 @@ from langchain.vectorstores import FAISS
 from langchain.llms import CTransformers
 from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
+from app.utilities.decorators import timeit
+
+"""
+This script creates a database of information gathered from local text files.
+"""
 
 
 def load_documents(dir, glob):
@@ -28,7 +29,7 @@ def load_and_store_text(saved_name, dir, glob):
     texts = splitter.split_documents(documents)
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2",
-        model_kwargs={'device': 'cuda'})
+        model_kwargs={'device': 'cpu'})
 
     # create and save the local database
     db = FAISS.from_documents(texts, embeddings)
@@ -97,6 +98,7 @@ def prepare_llm(dir, glob):
     return qa_llm
 
 
+@timeit
 def prompt(prompt, qa_llm):
     # ask the AI chat about information in our local files
     prompt = prompt

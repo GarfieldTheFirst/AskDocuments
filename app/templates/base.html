@@ -4,7 +4,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {% endblock %}
 {% block title %}
-    {{ 'Order Tracking Application' }}
+    {{ 'Ask your documents basic implementation' }}
 {% endblock %}
 {% import "bootstrap/fixes.html" as fixes %}
 {% block head %}
@@ -65,7 +65,6 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('files.files') }}">{{ 'Files' }}</a></li>
                 </ul>
             </div>
         </div>

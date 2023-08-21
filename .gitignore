@@ -3,4 +3,7 @@
 **/instance
 **/migrations
 **/logs
+**/text_files
+**/faiss
 *.bin
+*.env

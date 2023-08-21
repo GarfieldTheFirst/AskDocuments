@@ -5,7 +5,6 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
 from config import Config
-from app.llm.llm_evaluation import prepare_llm
 
 logger = logging.getLogger(__name__)
 bootstrap = Bootstrap()
@@ -36,11 +35,7 @@ def create_app(config_class=Config):
     app.config['BOOTSTRAP_SERVE_LOCAL'] = True
 
     from app.home import bp as home_bp
-    from app.files import bp as file_bp
-    # from app.scanners import bp as scanners_bp
 
     app.register_blueprint(home_bp, url_prefix="/")
-    app.register_blueprint(file_bp, url_prefix="/files")
-    # app.register_blueprint(scanners_bp, url_prefix="/scanners")
 
     return app

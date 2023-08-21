@@ -25,23 +25,29 @@
 {% endblock %}
 {% block app_content%}
 {% import "bootstrap/wtf.html" as wtf %}
-    {% if files_available %}
-    <h1>Ask questions</h1>
+    <h1>Upload files and ask questions</h1>
     <br>
     <div class="grid-container" id="formgrid">
         <div class="cell">
-            <h2>Prompt</h2>
-            {{ wtf.quick_form(prompt_form, method="post") }}
+            {% if files_available %}
+                <h2>Prompt</h2>
+                {{ wtf.quick_form(prompt_form, method="post") }}
+                <br>
+                {% if answer %}
+                    <h2>Answer</h2>
+                    {{ answer }}
+                    <br>
+                    inference time [s]: {{ duration }}
+                {% endif %}
+            {% else %}
+                <p>There are no files to be interpreted, add some first.</a>
+            {% endif %}
         </div>
-        <br>
-        {% if answer %}
         <div class="cell">
-            <h2>Answer</h2>
-            {{ answer }}
+            <h2>Available files</h2>
+            {{ table }}
+            <h2>Add a file</h2>
+            {{ wtf.quick_form(add_file_form, method="post") }}
         </div>
-        {% endif %}
     </div>
-    {% else %}
-        <a href="{{ url_for('files.files') }}">There are no files to be interpreted, add some here.</a>
-    {% endif %}
 {% endblock %}

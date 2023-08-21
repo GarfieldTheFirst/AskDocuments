@@ -1,4 +1,7 @@
-Simple "ask my documents" implementation.
+Simple "ask my documents" implementation in flask.
+
+This work utilizes the llm setup by Scott W Harden documented here:
+https://swharden.com/blog/2023-07-30-ai-document-qa/
 
 Please note: the llm needs to be downloaded first.
 This has been tested with the following two:

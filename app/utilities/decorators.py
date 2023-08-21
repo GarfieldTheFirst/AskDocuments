@@ -12,5 +12,5 @@ def timeit(func):
         # first item in the args, ie `args[0]` is `self`
         print(f'Function {func.__name__} \
               {args} {kwargs} Took {total_time:.4f} seconds')
-        return result
+        return result, total_time
     return timeit_wrapper
