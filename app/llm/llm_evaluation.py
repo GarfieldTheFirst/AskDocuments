@@ -7,10 +7,6 @@ from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
 from app.utilities.decorators import timeit
 
-"""
-This script creates a database of information gathered from local text files.
-"""
-
 
 def load_documents(dir, glob):
     loader = DirectoryLoader(dir, glob=glob, loader_cls=TextLoader)
@@ -21,6 +17,10 @@ def load_documents(dir, glob):
 
 
 def load_and_store_text(saved_name, dir, glob):
+    """
+    This function creates a database of information
+    gathered from local text files.
+    """
     documents = load_documents(dir, glob)
     if not documents:
         return False
@@ -35,12 +35,6 @@ def load_and_store_text(saved_name, dir, glob):
     db = FAISS.from_documents(texts, embeddings)
     db.save_local(saved_name)
     return True
-
-
-"""
-This script reads the database of information from local text files
-and uses a large language model to answer questions about their content.
-"""
 
 
 def load_language_model():
@@ -88,6 +82,10 @@ def prepare_pre_loaded_llm(db, llm):
 
 
 def prepare_llm(dir, glob):
+    """
+    This function reads the database of information from local text files
+    and uses a large language model to answer questions about their content.
+    """
     db_save_name = "faiss"
     files_available = load_and_store_text(db_save_name, dir, glob)
     if not files_available:

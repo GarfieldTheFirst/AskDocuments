@@ -3,12 +3,10 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flask_migrate import Migrate
 from config import Config
 
 logger = logging.getLogger(__name__)
 bootstrap = Bootstrap()
-migrate = Migrate()
 
 
 def create_app(config_class=Config):
