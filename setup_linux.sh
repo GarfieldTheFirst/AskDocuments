@@ -7,12 +7,15 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 pip install waitress
 
-# Download llm
+# download llm
 cd ./app/llm
 curl -L -o llama-2-7b-chat.ggmlv3.q8_0.bin https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/llama-2-7b-chat.ggmlv3.q8_0.bin
 
-cd ../../
+cd ../
+mkdir text_files
+cd ../
 
+# prepare launch file
 echo '#!/usr/bin/bash
 chmod +x setup_linux.sh
 source ./venv/bin/activate 
