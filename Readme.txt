@@ -2,11 +2,11 @@ Simple "ask my documents" implementation in flask.
 
 Setup
 
-For setup in linux, run: 
+For setup in linux, run the following in a terminal opened in the repo folder: 
 
 source setup_linux.sh
 
-To run the app, run:
+Then, to run the app, run the following in the terminal:
 
 source run_app.sh
 
