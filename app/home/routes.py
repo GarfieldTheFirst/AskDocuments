@@ -3,9 +3,7 @@ from PyPDF2 import PdfReader
 from flask import render_template, request, flash
 from flask_table import Table, Col, ButtonCol
 from wtforms.validators import NoneOf
-from app.llm.llm_evaluation import load_documents
-from app.llm.llm_evaluation import prompt
-from app.llm.llm_evaluation import prepare_llm
+from app.llm.llm_evaluation import load_documents, prompt, prepare_llm
 from app.home import bp
 from config import Config
 from app.home.forms import PromptForm, AddFileForm
